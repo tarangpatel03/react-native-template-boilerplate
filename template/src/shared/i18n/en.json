@@ -1,0 +1,11 @@
+{
+  "BOILER": {
+    "THEME_SWITCH": "Theme Switch",
+    "LOADING": "Loading ..."
+  },
+  "API_ERRORS": {
+    "UNAUTHORIZED": "Unauthorized",
+    "SERVER_ERROR": "Server error",
+    "NETWORK_ERROR": "Network error"
+  }
+}
