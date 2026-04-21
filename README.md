@@ -1,97 +1,320 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# React Native Boilerplate Template
 
-# Getting Started
+A scalable React Native starter template with **feature-based architecture**, preconfigured libraries, and production-ready setup.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+Designed for fast project initialization with consistent structure.
 
-## Step 1: Start Metro
+---
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Usage
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+Create a new React Native project using this template:
 
-```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
+```bash
+npx @react-native-community/cli@latest init MyApp --template <your-github-username>/<repo-name>
 ```
 
-## Step 2: Build and run your app
+Example:
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```bash
+npx @react-native-community/cli@latest init MyApp --template tarangpatel03/react-native-template-boilerplate
 ```
 
-### iOS
+## After Project Creation
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+```bash
+cd MyApp
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+yarn
 
-```sh
-bundle install
+cd ios && pod install && cd ..
+
+npx react-native run-ios
+npx react-native run-android
 ```
 
-Then, and every time you update your native dependencies, run:
+---
 
-```sh
-bundle exec pod install
+## Features
+
+### Architecture
+
+- Feature-based folder structure
+- Clear separation between app, shared, and features
+- Scalable navigation setup
+- Strict import boundaries
+
+```txt
+src/
+ ├── app/
+ ├── assets/
+ ├── features/
+ └── shared/
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+---
 
-```sh
-# Using npm
-npm run ios
+### Preconfigured Libraries
 
-# OR using Yarn
-yarn ios
+**Core**
+
+- React Native 0.85+
+- TypeScript
+- ESLint + Prettier
+- Absolute imports
+
+**Navigation**
+
+- @react-navigation/native
+- native-stack
+- bottom-tabs
+
+**State Management**
+
+- Redux Toolkit
+- redux-persist
+
+**Networking**
+
+- axios client
+- interceptor setup
+- centralized error handling
+
+**Server State**
+
+- @tanstack/react-query
+
+**UI & UX**
+
+- @gorhom/bottom-sheet
+- react-native-toast-message
+- react-native-safe-area-context
+- react-native-gesture-handler
+- react-native-reanimated
+- react-native-linear-gradient
+- react-native-fast-image
+- shimmer placeholder
+
+**Forms**
+
+- Custom input validation setup
+
+**Utilities**
+
+- i18next localization setup
+- theme system
+- network monitor
+- global loader handler
+- reusable components
+
+---
+
+## Included Setup
+
+### Navigation structure
+
+- Root navigator
+- Bottom tab navigator
+- feature-level stacks
+
+### Global Providers
+
+- Redux Provider
+- Persist Gate
+- Bottom Sheet Provider
+- Toast Provider
+- Theme Provider
+
+### API layer
+
+- axios instance
+- request/response interceptors
+- token injection
+- error parsing
+
+### UI primitives
+
+- Buttons
+- Inputs
+- Text components
+- Loader
+- Toast
+- BottomSheet abstraction
+
+---
+
+## Code Generators
+
+This template includes CLI scripts to generate features and entities with consistent structure.
+
+Generators help enforce architecture boundaries and reduce manual setup.
+
+### Generate Feature
+
+Creates a new feature module with standard structure.
+
+```bash
+yarn generate:feature <FeatureName>
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+Example:
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```bash
+yarn generate:feature Auth
+```
 
-## Step 3: Modify your app
+Generated structure:
 
-Now that you have successfully run the app, let's make changes!
+```txt
+src/features/Auth/
+├── components/
+├── screens/
+├── hooks/
+├── services/
+├── store/
+├── types/
+├── utils/
+└── index.ts
+```
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+---
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+### Generate Entity
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+Creates reusable domain entity.
 
-## Congratulations! :tada:
+Entities are shared business objects used across features.
 
-You've successfully run and modified your React Native App. :partying_face:
+```bash
+yarn generate:entity <EntityName>
+```
 
-### Now what?
+Example:
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+```bash
+yarn generate:entity User
+```
 
-# Troubleshooting
+Generated structure:
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+```bash
+src/entities/User/
+├── types/
+├── services/
+├── hooks/
+└── index.ts
+```
 
-# Learn More
+---
 
-To learn more about React Native, take a look at the following resources:
+## Architecture Overview
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Feature-based structure
+
+Features are isolated and should not import from other features directly.
+
+Instead, shared logic should live in:
+
+```bash
+src/shared/
+```
+
+or
+
+```bash
+src/entities/
+```
+
+---
+
+## Layer responsibilities
+
+### app
+
+Application bootstrap and providers.
+
+```txt
+src/app/
+```
+
+Contains:
+
+- navigation
+- store setup
+- providers
+- config
+
+---
+
+### features
+
+Self-contained business features.
+
+Example:
+
+```txt
+src/features/auth
+src/features/chat
+src/features/orders
+```
+
+Each feature contains:
+
+- UI
+- hooks
+- services
+- store slice
+- types
+
+---
+
+### entities
+
+Reusable domain objects.
+
+Example:
+
+```txt
+User
+Product
+Order
+Conversation
+Message
+```
+
+Entities may include:
+
+- types
+- service helpers
+- validation schema
+- mapping logic
+
+---
+
+### shared
+
+Cross-feature reusable code.
+
+```txt
+components
+hooks
+utils
+services
+themes
+constants
+types
+```
+
+---
+
+## Roadmap
+
+This template will continue to evolve with additional improvements, reusable modules, and developer experience enhancements.
+
+New improvements will be added incrementally without breaking the core structure.
+
+You can safely pull updates or adapt new patterns into existing projects when needed.
+
+## License
+
+MIT
