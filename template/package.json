@@ -5,6 +5,8 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "generate:feature": "node scripts/generateFeature.js",
+    "generate:entity": "node scripts/generateEntity.js",
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest"
