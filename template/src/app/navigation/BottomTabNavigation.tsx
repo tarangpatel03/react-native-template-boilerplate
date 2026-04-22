@@ -3,7 +3,7 @@ import { BottomTabParamList } from './navigation.types';
 import { HomeNavigator } from '@/features/home';
 import { AppText, TabIcon } from '@/shared/ui';
 import { appAssets } from '@/assets';
-import { ImageSourcePropType } from 'react-native';
+import { ImageSourcePropType, StyleSheet } from 'react-native';
 import { normalize } from '@/shared/lib';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
@@ -18,8 +18,9 @@ const showTabIcon = ({ icon, filledIcon, props }: TabBarIconProps) => {
   return <TabIcon icon={props.focused ? icon : filledIcon} />;
 };
 
-const showTabLabel = ({ title }: { title: string }) => {
-  return <AppText style={{ fontSize: 12 }}>{title}</AppText>;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const showTabLabel = ({ title, props }: { title: string; props: any }) => {
+  return <AppText style={styles.font12}>{title}</AppText>;
 };
 
 export const BottomTabNavigation = () => {
@@ -27,8 +28,6 @@ export const BottomTabNavigation = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        // tabBarShowLabel: false,
-        tabBarHideOnKeyboard: true,
         tabBarStyle: { paddingTop: normalize(10) },
       }}
     >
@@ -36,7 +35,7 @@ export const BottomTabNavigation = () => {
         name={'HomeStack'}
         component={HomeNavigator}
         options={{
-          tabBarLabel: (props) => showTabLabel({ title: 'Home' }),
+          tabBarLabel: (props) => showTabLabel({ title: 'Home', props }),
           tabBarIcon: (props) =>
             showTabIcon({
               filledIcon: appAssets.icons.ic_home,
@@ -48,3 +47,9 @@ export const BottomTabNavigation = () => {
     </Tab.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  font12: {
+    fontSize: 12,
+  },
+});
